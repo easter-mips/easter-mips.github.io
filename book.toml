@@ -1,0 +1,6 @@
+[book]
+authors = ["Yichen Xu"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Easter MIPS"
