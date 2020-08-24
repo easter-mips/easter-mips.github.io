@@ -3,10 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
+        <title>EasterCache - Easter MIPS</title>
         
-        
-        <base href="/">
         
 
 
@@ -91,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="easter_cache.html"><strong aria-hidden="true">2.</strong> EasterCache</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="easter_cache/generate_verilog.html"><strong aria-hidden="true">2.1.</strong> 生成 Verilog</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="easter_cache.html" class="active"><strong aria-hidden="true">2.</strong> EasterCache</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="easter_cache/generate_verilog.html"><strong aria-hidden="true">2.1.</strong> 生成 Verilog</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -157,15 +155,24 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#document-not-found-404" id="document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1><a class="header" href="#eastercache" id="eastercache">EasterCache</a></h1>
+<p><a href="https://github.com/easter-mips/EasterCache">EasterCache</a> 是使用 Chisel3 实现的，参数可配置的高性能 MIPS Cache。由于Cache在版本迭代过程中，为系统的引导引入了较为棘手的bug，因而最后提交包中使用的Cache并非为最新版本，而为分支<code>legacy-dcache</code>中的版本。仅仅使用了Chisel3开发的D-Cache，其余部分由SystemVerilog实现。</p>
+<p><code>master</code>分支为最新版本的Cache，完全由Chisel3实现，包含一个双发I-Cache，以及一个带有Victim Cache的D-Cache。相联度、行数、行大小都能非常容易的进行配置。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
+                        
+                            <a rel="next" href="easter_cache/generate_verilog.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -175,7 +182,15 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
+                
+                    <a rel="next" href="easter_cache/generate_verilog.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 

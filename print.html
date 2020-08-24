@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 引言</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="easter_cache.html"><strong aria-hidden="true">2.</strong> EasterCache</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="easter_cache/generate_verilog.html"><strong aria-hidden="true">2.1.</strong> 生成 Verilog</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -166,6 +166,26 @@
 <p>这道题我真的做不队 @ NSCSCC 2020</p>
 <p>EasterMIPS 项目为北京邮电大学“这道题我真的做不队”在 <a href="http://www.nscscc.org/">NSCSCC 2020</a> 中获决赛一等奖的参赛作品。</p>
 <p>本项目中，我们开源了决赛提交的CPU核、在开发过程中实现的多个MIPS Cache、uCore系统以及示例程序的有关代码。</p>
+<h1><a class="header" href="#eastercache" id="eastercache">EasterCache</a></h1>
+<p><a href="https://github.com/easter-mips/EasterCache">EasterCache</a> 是使用 Chisel3 实现的，参数可配置的高性能 MIPS Cache。由于Cache在版本迭代过程中，为系统的引导引入了较为棘手的bug，因而最后提交包中使用的Cache并非为最新版本，而为分支<code>legacy-dcache</code>中的版本。仅仅使用了Chisel3开发的D-Cache，其余部分由SystemVerilog实现。</p>
+<p><code>master</code>分支为最新版本的Cache，完全由Chisel3实现，包含一个双发I-Cache，以及一个带有Victim Cache的D-Cache。相联度、行数、行大小都能非常容易的进行配置。</p>
+<h1><a class="header" href="#生成-verilog" id="生成-verilog">生成 Verilog</a></h1>
+<p>EasterCache由Chisel3开发，因而使用<code>sbt</code>调用<code>Chisel3</code>模块来生成 verilog。下面的命令</p>
+<pre><code class="language-shell">mkdir target &amp;&amp; sbt 'runMain cache.Cache --target-dir target'
+</code></pre>
+<p>能够生成Cache的verilog代码，保存在<code>target/</code>文件夹中。</p>
+<p>注意项目中使用<code>BlackBox</code>封装了用Block Memory Generator生成的RAM Xilinx IP。IP名称分别为<code>bank_ram</code>与<code>data_bank_ram</code>。使用生成的verilog代码时，需要在工程中对应定制。</p>
+<h2><a class="header" href="#参数配置" id="参数配置">参数配置</a></h2>
+<p>修改<code>src/main/scala/cache/Cache.scala</code>文件中</p>
+<pre><code class="language-scala">object Cache extends App {
+  new ChiselStage execute(args, Seq(ChiselGeneratorAnnotation(
+    () =&gt;
+      new Cache(new CacheSettings(
+        new CacheConfig(wayNum = 2, setWidth = 7, transNum = 1), new CacheConfig(wayNum = 2, setWidth = 7), vcacheDepth = 16
+      )))))
+}
+</code></pre>
+<p>的相关参数，即可以改变Cache配置。重新生成则得到新的Cache代码。</p>
 
                     </main>
 
